@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-     background-color: rgba(245, 222, 179, 0.784);
+      background-color: rgba(245, 222, 179, 0.784);
       font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
@@ -17,10 +18,37 @@
       color: #2c3e50;
     }
 
+    .start-container {
+      text-align: center;
+    }
+
+    .start-container input {
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+
+    .start-container button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #383bfb;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-weight: 600;
+    }
+    .start-container button:hover{
+      background-color: #eb5757;
+    }
     .quiz-container {
+      display: none;
       background: #ffffff;
       padding: 30px;
-       border: 2px solid black;
+      border: 2px solid black;
       border-radius: 16px;
       box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
       max-width: 650px;
@@ -86,7 +114,6 @@
       background: #1b7cb8;
     }
 
-    /* Progress Bar */
     .progress-container {
       background: #e1e8ee;
       border-radius: 10px;
@@ -103,7 +130,6 @@
       transition: width 0.5s ease-in-out;
     }
 
-    /* Timer */
     #timer {
       font-size: 16px;
       font-weight: 600;
@@ -122,28 +148,37 @@
     .timer-bar {
       height: 100%;
       width: 100%;
-      background: linear-gradient(90deg, #27ae60, #2ecc71); /* Green by default */
+      background: linear-gradient(90deg, #27ae60, #2ecc71);
       transition: width 1s linear, background 0.5s ease-in-out;
     }
-    .log {
-    font-size: 1.2rem;
-    text-transform: capitalize;
-    background: linear-gradient(90deg, #0d01e9, #ff4b2b, #eac302);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-    background-size: 200%;   /* required for smooth animation */
-    animation: shine 3s linear infinite;
-    text-align: right;
-    font-weight: 700;
-}
 
+    .log {
+      font-size: 1.2rem;
+      text-transform: capitalize;
+      background: linear-gradient(90deg, #0d01e9, #ff4b2b, #eac302);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      background-size: 200%;
+      animation: shine 3s linear infinite;
+      text-align: right;
+      font-weight: 700;
+    }
   </style>
 </head>
+
 <body>
 
+  <!-- Start Container -->
+  <div class="start-container">
+    <h2>Enter Your Name to Start Quiz</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button id="startBtn">Start Quiz</button>
+  </div>
+
+  <!-- Quiz Container -->
   <div class="quiz-container">
-     <div class="log">developed by ...............!</div>
+    <div class="log">developed by ...............!</div>
     <div class="question-number" id="question-number">Question 1 of 10</div>
 
     <div class="progress-container">
@@ -161,56 +196,184 @@
   </div>
 
   <script>
-    const quizData = [
+   const quizData = [
+  // Basic (10)
   {
-    question: "Which of the following is a correct way to declare a variable in Python?",
-    options: ["var x = 5", "x = 5", "int x = 5", "declare x = 5"],
-    answer: "x = 5"
+    question: "What does HTML stand for?",
+    options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Hyper Text Makeup Language"],
+    answer: "Hyper Text Markup Language"
   },
   {
-    question: "Which of these is a Python data type?",
-    options: ["integer", "string", "list", "All of the above"],
-    answer: "All of the above"
+    question: "Which tag is used to display the largest heading?",
+    options: ["<h1>", "<h6>", "<heading>", "<h0>"],
+    answer: "<h1>"
   },
   {
-    question: "How do you create a list in Python?",
-    options: ["list = {}", "list = []", "list = ()", "list = <>"],
-    answer: "list = []"
+    question: "Which tag is used to insert a line break?",
+    options: ["<lb>", "<break>", "<br>", "<line>"],
+    answer: "<br>"
   },
   {
-    question: "What is the output of: print(type(3.14))?",
-    options: ["<class 'int'>", "<class 'float'>", "<class 'str'>", "<class 'complex'>"],
-    answer: "<class 'float'>"
+    question: "HTML files are saved with which extension?",
+    options: [".htm / .html", ".doc", ".txt", ".css"],
+    answer: ".htm / .html"
   },
   {
-    question: "Which keyword is used for defining a function in Python?",
-    options: ["func", "def", "function", "define"],
-    answer: "def"
+    question: "Which tag is used to insert an image?",
+    options: ["<img>", "<image>", "<src>", "<picture>"],
+    answer: "<img>"
   },
   {
-    question: "Which symbol is used for comments in Python?",
-    options: ["//", "#", "/* */", "<!-- -->"],
-    answer: "#"
+    question: "Which attribute is used to provide a link in <a> tag?",
+    options: ["href", "link", "src", "url"],
+    answer: "href"
   },
   {
-    question: "Which of the following loops is available in Python?",
-    options: ["for loop", "while loop", "do-while loop", "Both for loop and while loop"],
-    answer: "Both for loop and while loop"
+    question: "Which element is used to insert a horizontal line?",
+    options: ["<hr>", "<line>", "<hl>", "<break>"],
+    answer: "<hr>"
   },
   {
-    question: "What is the output of: print(2 ** 3)?",
-    options: ["6", "8", "9", "Error"],
-    answer: "8"
+    question: "Which tag is used to create an unordered list?",
+    options: ["<ol>", "<ul>", "<li>", "<list>"],
+    answer: "<ul>"
   },
   {
-    question: "Which operator is used for floor division in Python?",
-    options: ["/", "//", "%", "**"],
-    answer: "//"
+    question: "The correct way to comment in HTML is:",
+    options: ["// comment", "# comment", "<!-- comment -->", "/* comment */"],
+    answer: "<!-- comment -->"
   },
   {
-    question: "What is the correct way to import the math module in Python?",
-    options: ["import math", "include math", "require math", "using math"],
-    answer: "import math"
+    question: "Which tag is used to display a paragraph?",
+    options: ["<para>", "<paragraph>", "<p>", "<pg>"],
+    answer: "<p>"
+  },
+
+  // Medium (25)
+  {
+    question: "Which tag is used to create a table row?",
+    options: ["<tr>", "<td>", "<row>", "<table-row>"],
+    answer: "<tr>"
+  },
+  {
+    question: "What does the <thead> tag define?",
+    options: ["Table Body", "Table Footer", "Table Heading Section", "Table Row"],
+    answer: "Table Heading Section"
+  },
+  {
+    question: "Which attribute is used to merge two or more columns in a table?",
+    options: ["rowspan", "colspan", "merge", "span"],
+    answer: "colspan"
+  },
+  {
+    question: "Which tag is used to insert a video in HTML5?",
+    options: ["<movie>", "<media>", "<video>", "<clip>"],
+    answer: "<video>"
+  },
+  {
+    question: "Which attribute is used in <img> tag to display alternative text?",
+    options: ["title", "src", "alt", "caption"],
+    answer: "alt"
+  },
+  {
+    question: "What does the <iframe> tag do?",
+    options: ["Creates a new frame window", "Embeds another webpage inside a page", "Displays an image", "Creates a form"],
+    answer: "Embeds another webpage inside a page"
+  },
+  {
+    question: "Which tag is used to group dropdown options?",
+    options: ["<select>", "<optgroup>", "<option>", "<input>"],
+    answer: "<optgroup>"
+  },
+  {
+    question: "Which tag is used to define important text?",
+    options: ["<b>", "<strong>", "<i>", "<mark>"],
+    answer: "<strong>"
+  },
+  {
+    question: "Which input type is used to create a slider?",
+    options: ["range", "slider", "number", "scroll"],
+    answer: "range"
+  },
+  {
+    question: "Which tag is used to add a caption to a table?",
+    options: ["<caption>", "<title>", "<heading>", "<th>"],
+    answer: "<caption>"
+  },
+  {
+    question: "Which HTML attribute is used to specify a unique identifier for an element?",
+    options: ["class", "name", "id", "key"],
+    answer: "id"
+  },
+  {
+    question: "Which tag is used to define a dropdown list?",
+    options: ["<list>", "<select>", "<dropdown>", "<option>"],
+    answer: "<select>"
+  },
+  {
+    question: "Which attribute is used in form input to specify the type of control (like text, password)?",
+    options: ["kind", "type", "input", "form"],
+    answer: "type"
+  },
+  {
+    question: "Which HTML tag is used to define a checkbox?",
+    options: ["<input type='check'>", "<input type='checkbox'>", "<checkbox>", "<check>"],
+    answer: "<input type='checkbox'>"
+  },
+  {
+    question: "Which tag is used to create a numbered list?",
+    options: ["<ol>", "<ul>", "<list>", "<li>"],
+    answer: "<ol>"
+  },
+  {
+    question: "Which tag is used to make text italic in HTML?",
+    options: ["<i>", "<em>", "Both a and b", "<italic>"],
+    answer: "Both a and b"
+  },
+  {
+    question: "Which tag is used to create a dropdown option?",
+    options: ["<option>", "<list>", "<select>", "<input>"],
+    answer: "<option>"
+  },
+  {
+    question: "Which tag is used to create a hyperlink?",
+    options: ["<link>", "<a>", "<href>", "<url>"],
+    answer: "<a>"
+  },
+  {
+    question: "Which tag is used to create a form?",
+    options: ["<form>", "<input>", "<fieldset>", "<details>"],
+    answer: "<form>"
+  },
+  {
+    question: "Which input type is used for selecting multiple options?",
+    options: ["radio", "checkbox", "select", "dropdown"],
+    answer: "checkbox"
+  },
+  {
+    question: "Which attribute is used to open a link in a new tab?",
+    options: ["new", "open", "target='_blank'", "href"],
+    answer: "target='_blank'"
+  },
+  {
+    question: "Which tag is used to group related elements in a form?",
+    options: ["<group>", "<fieldset>", "<formgroup>", "<legend>"],
+    answer: "<fieldset>"
+  },
+  {
+    question: "Which tag is used to define a label for form elements?",
+    options: ["<caption>", "<legend>", "<label>", "<info>"],
+    answer: "<label>"
+  },
+  {
+    question: "Which HTML element is used to display preformatted text?",
+    options: ["<pre>", "<code>", "<format>", "<text>"],
+    answer: "<pre>"
+  },
+  {
+    question: "Which HTML tag is used to display a tooltip when mouse hovers over an element?",
+    options: ["alt", "title", "tooltip", "hint"],
+    answer: "title"
   }
 ];
 
@@ -223,11 +386,31 @@
     const timerEl = document.getElementById("timer");
     const timerBar = document.getElementById("timer-bar");
 
+    const startBtn = document.getElementById("startBtn");
+    const nameInput = document.getElementById("nameInput");
+    const startContainer = document.querySelector(".start-container");
+    const quizContainer = document.querySelector(".quiz-container");
+
     let currentQuestion = 0;
     let score = 0;
     let timeLeft = 15;
     let timer;
+    let userName = "";
 
+    // Start Button Click
+    startBtn.addEventListener("click", () => {
+      const name = nameInput.value.trim();
+      if (name === "") {
+        alert("Please enter your name to start!");
+        return;
+      }
+      userName = name;
+      startContainer.style.display = "none"; // Hide input
+      quizContainer.style.display = "block"; // Show quiz
+      loadQuestion();
+    });
+
+    // Load Question
     function loadQuestion() {
       resetState();
       const currentQuiz = quizData[currentQuestion];
@@ -250,7 +433,7 @@
       timeLeft = 15;
       timerEl.textContent = `Time left: ${timeLeft}s`;
       timerBar.style.width = "100%";
-      timerBar.style.background = "linear-gradient(90deg, #27ae60, #2ecc71)"; // reset to green
+      timerBar.style.background = "linear-gradient(90deg, #27ae60, #2ecc71)";
       nextBtn.style.display = "none";
       optionsEl.innerHTML = "";
     }
@@ -261,13 +444,12 @@
         timerEl.textContent = `Time left: ${timeLeft}s`;
         timerBar.style.width = `${(timeLeft / 15) * 100}%`;
 
-        // 🎨 Timer color change
         if (timeLeft > 10) {
-          timerBar.style.background = "linear-gradient(90deg, #27ae60, #2ecc71)"; // Green
+          timerBar.style.background = "linear-gradient(90deg, #27ae60, #2ecc71)";
         } else if (timeLeft > 5) {
-          timerBar.style.background = "linear-gradient(90deg, #f1c40f, #f39c12)"; // Yellow/Orange
+          timerBar.style.background = "linear-gradient(90deg, #f1c40f, #f39c12)";
         } else {
-          timerBar.style.background = "linear-gradient(90deg, #e74c3c, #c0392b)"; // Red
+          timerBar.style.background = "linear-gradient(90deg, #e74c3c, #c0392b)";
         }
 
         if (timeLeft <= 0) {
@@ -316,7 +498,12 @@
 
     function showScore() {
       resetState();
-      questionEl.textContent = `🎉 You scored ${score} out of ${quizData.length}!`;
+      const percentage = (score / quizData.length) * 100;
+      const message = percentage >= 75
+        ? `🎉 Congratulations ${userName}, You Passed!`
+        : `😔 Better luck next time, ${userName}!\n`;
+
+      questionEl.textContent = `${message}\nYour Score: ${score} / ${quizData.length} (${percentage.toFixed(2)}%)`;
       questionNumberEl.textContent = "Quiz Completed";
       progressBar.style.width = "100%";
       nextBtn.textContent = "Play Again";
@@ -338,16 +525,18 @@
       if (currentQuestion < quizData.length) {
         handleNext();
       } else {
+        // Reset Quiz
         currentQuestion = 0;
         score = 0;
         nextBtn.textContent = "Next";
         timerEl.style.display = "block";
         timerBar.style.display = "block";
-        loadQuestion();
+        quizContainer.style.display = "none";
+        startContainer.style.display = "block";
+        nameInput.value = "";
       }
     });
-
-    loadQuestion();
   </script>
 </body>
+
 </html>
